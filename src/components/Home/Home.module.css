@@ -1,0 +1,25 @@
+.trendingMovies__title {
+  color: orangered;
+}
+
+.trendingMovies__list {
+  list-style: none;
+  font-size: 30px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding-left: 0px;
+}
+
+.trendingMovies__listItem {
+  > a {
+    text-decoration: none;
+    color: black;
+  }
+
+  > a:focus,
+  a:hover {
+    color: orangered;
+    cursor: pointer;
+  }
+}
