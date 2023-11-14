@@ -1,23 +1,59 @@
-import { Outlet } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import { useMovieIdInfo } from 'hooks/useMovieIdInfo';
+import { Link, useLocation, Outlet } from 'react-router-dom';
+import { getMoviesInfo } from '../../Api/getMoviesInfo';
+import React, { useEffect, useState } from 'react';
+import { MovieDescription } from 'components/MovieDescription/MovieDescription';
+import css from './MovieDetails.module.css';
 
 export const MovieDetails = () => {
   const location = useLocation();
-  const id = location.state.id;
-  const movieInfoId = useMovieIdInfo(id);
-  console.log(movieInfoId.data);
+  const [movieDetails, setmovieDetails] = useState(null);
+  const [movieId] = useState(location.state.movieId);
+
+  useEffect(() => {
+    const id = location.state.id;
+    async function fetchMoviesDetails() {
+      const movieInfo = await getMoviesInfo(id);
+      setmovieDetails({ ...movieInfo });
+    }
+
+    fetchMoviesDetails();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div>
-      moviedetails
-      <img src={movieInfoId.data.poster_path} alt="movie Poster"></img>
-      <h1>{movieInfoId.data.title}</h1>
-      <p>User score: {movieInfoId.data.vote_count}%</p>
-      <h2>Overview</h2>
-      <p>{movieInfoId.data.overview}</p>
-      <h2>Genres</h2>
-      <p>{movieInfoId.data.genres.map(item => item.name).join(', ')}</p>
+      {movieDetails && (
+        <MovieDescription
+          img={movieDetails.poster_path}
+          title={movieDetails.title}
+          score={movieDetails.vote_average}
+          overview={movieDetails.overview}
+          genres={movieDetails.genres}
+        />
+      )}
+      <div className={css.additionalInformation}>
+        <h2>Additional Information</h2>
+        <ul className={css.additionalInformation__list}>
+          <li>
+            <Link
+              className={css.additionalInformation__link}
+              to="cast"
+              state={{ movieId: movieId }}
+            >
+              Cast
+            </Link>
+          </li>
+          <li>
+            <Link
+              className={css.additionalInformation__link}
+              to="reviews"
+              state={{ movieId: movieId }}
+            >
+              Reviews
+            </Link>
+          </li>
+        </ul>
+      </div>
       <Outlet />
     </div>
   );

@@ -1,0 +1,26 @@
+.additionalInformation > h2 {
+  color: orangered;
+}
+
+.additionalInformation__list {
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  padding-left: 0px;
+}
+
+.additionalInformation__link {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+.additionalInformation__link:hover,
+.additionalInformation__link:focus {
+  color: orangered;
+}
+
+.additionalInformation__link.active {
+  color: orangered;
+}

@@ -1,0 +1,11 @@
+.movieDescription {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid black;
+}
+
+.movieDescription__title {
+  margin-top: 0px;
+}
