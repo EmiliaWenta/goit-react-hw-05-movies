@@ -7,12 +7,11 @@ import css from './MovieDetails.module.css';
 export const MovieDetails = () => {
   const location = useLocation();
   const [movieDetails, setmovieDetails] = useState(null);
-  const [movieId] = useState(location.state.movieId);
+  const [movieId] = useState(location.state.id);
 
   useEffect(() => {
-    const id = location.state.id;
     async function fetchMoviesDetails() {
-      const movieInfo = await getMoviesInfo(id);
+      const movieInfo = await getMoviesInfo(movieId);
       setmovieDetails({ ...movieInfo });
     }
 
@@ -38,7 +37,7 @@ export const MovieDetails = () => {
             <Link
               className={css.additionalInformation__link}
               to="cast"
-              state={{ movieId: movieId }}
+              state={{ id: movieId }}
             >
               Cast
             </Link>
@@ -47,7 +46,7 @@ export const MovieDetails = () => {
             <Link
               className={css.additionalInformation__link}
               to="reviews"
-              state={{ movieId: movieId }}
+              state={{ id: movieId }}
             >
               Reviews
             </Link>
