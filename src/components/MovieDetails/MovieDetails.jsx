@@ -2,17 +2,20 @@ import { Link, useLocation, Outlet } from 'react-router-dom';
 import { getMoviesInfo } from '../../Api/getMoviesInfo';
 import React, { useEffect, useState } from 'react';
 import { MovieDescription } from 'components/MovieDescription/MovieDescription';
+import { ButtonGoBack } from 'components/ButtonGoBack/ButtonGoBack';
 import css from './MovieDetails.module.css';
 
 export const MovieDetails = () => {
   const location = useLocation();
   const [movieDetails, setmovieDetails] = useState(null);
   const [movieId] = useState(location.state.id);
+  const [locationforButton, setlocationforButton] = useState();
 
   useEffect(() => {
     async function fetchMoviesDetails() {
       const movieInfo = await getMoviesInfo(movieId);
       setmovieDetails({ ...movieInfo });
+      setlocationforButton(location.state.from);
     }
 
     fetchMoviesDetails();
@@ -21,6 +24,7 @@ export const MovieDetails = () => {
 
   return (
     <div>
+      <ButtonGoBack locationforButton={locationforButton} />
       {movieDetails && (
         <MovieDescription
           img={movieDetails.poster_path}

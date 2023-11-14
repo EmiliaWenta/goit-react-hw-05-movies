@@ -20,12 +20,6 @@ export const Reviews = () => {
   }, []);
 
   return (
-    <div>
-      {reviews ? (
-        <ReviewsList reviews={reviews} />
-      ) : (
-        <p>We don't have any reviews for this movies</p>
-      )}
-    </div>
+    <div>{reviews ? <ReviewsList reviews={reviews} /> : <p>Loader</p>}</div>
   );
 };
