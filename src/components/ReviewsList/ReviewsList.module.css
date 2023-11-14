@@ -1,0 +1,7 @@
+.reviewsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 0px;
+}
