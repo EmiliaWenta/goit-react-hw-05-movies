@@ -1,8 +1,9 @@
 import { Link, useLocation, Outlet } from 'react-router-dom';
 import { getMoviesInfo } from '../../Api/getMoviesInfo';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { MovieDescription } from 'components/MovieDescription/MovieDescription';
 import { ButtonGoBack } from 'components/ButtonGoBack/ButtonGoBack';
+import Loader from '../Loader/Loader';
 import css from './MovieDetails.module.css';
 
 export const MovieDetails = () => {
@@ -57,7 +58,9 @@ export const MovieDetails = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

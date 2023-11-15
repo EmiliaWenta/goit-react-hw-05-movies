@@ -19,7 +19,5 @@ export const Reviews = () => {
     // eslint-disable-next-line
   }, []);
 
-  return (
-    <div>{reviews ? <ReviewsList reviews={reviews} /> : <p>Loader</p>}</div>
-  );
+  return <div>{reviews && <ReviewsList reviews={reviews} />}</div>;
 };
