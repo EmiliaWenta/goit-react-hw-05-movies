@@ -6,7 +6,7 @@ import { ButtonGoBack } from 'components/ButtonGoBack/ButtonGoBack';
 import Loader from '../Loader/Loader';
 import css from './MovieDetails.module.css';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const location = useLocation();
   const [movieDetails, setmovieDetails] = useState(null);
   const [movieId] = useState(location.state.id);
@@ -64,3 +64,5 @@ export const MovieDetails = () => {
     </div>
   );
 };
+
+export default MovieDetails;

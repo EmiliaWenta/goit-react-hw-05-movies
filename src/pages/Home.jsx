@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import css from './Home.module.css';
 
-export function Home() {
+export default function Home() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {

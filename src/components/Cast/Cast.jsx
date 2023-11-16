@@ -3,7 +3,7 @@ import { getCast } from '../../Api/getCast';
 import React, { useEffect, useState } from 'react';
 import { CastList } from '../CastList/CastList';
 
-export const Cast = () => {
+const Cast = () => {
   const location = useLocation();
   const [cast, setCast] = useState([]);
   const [movieId] = useState(location.state.id);
@@ -20,3 +20,5 @@ export const Cast = () => {
 
   return <div>{cast && <CastList cast={cast} />}</div>;
 };
+
+export default Cast;
