@@ -6,7 +6,7 @@ import { Actor } from '../Actor/Actor';
 
 export const CastList = props => {
   const { cast } = props;
-  console.log(cast);
+
   return (
     <div>
       <ul className={css.castList}>
