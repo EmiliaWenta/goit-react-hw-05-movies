@@ -1,12 +1,9 @@
 import axios from 'axios';
 //
+import { searchParams, getCastURL } from '../consts/theMoviesDB';
 
 export const getCast = async id => {
-  const URL = `https://api.themoviedb.org/3/movie/${id}/credits`;
-  const searchParams = new URLSearchParams({
-    api_key: process.env.REACT_APP_API_KEY,
-    language: 'en-US',
-  });
+  const URL = getCastURL(id);
 
   const response = await axios.get(`${URL}?${searchParams}`);
   const data = await response.data;
